@@ -25,3 +25,9 @@ jobs:
 
       - name: Build Docker
         run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/my-image:$GITHUB_RUN_NUMBER
+
+      - name: Login into docker
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:$GITHUB_RUN_NUMBER
