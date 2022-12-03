@@ -22,3 +22,6 @@ jobs:
         run: npm ci
 
       - run: npm run lint
+
+      - name: Build Docker
+        run: docker build . --file Dockerfile -t ${{ secrets.DOCKERHUB_USERNAME }}/my-image:$GITHUB_RUN_NUMBER
